@@ -31,44 +31,50 @@
     <div id="dashboard-container">
       <div id="message">Loading your personalized dashboard…</div>
     </div>
+<script>
+  (function () {
+    // 1) Get learner email from URL: ?email=learner@example.com
+    const params = new URLSearchParams(window.location.search);
+    const rawEmail = params.get("email");
 
-    <script>
-      (function () {
-        // 1) Get learner email from URL: ?email=learner@example.com
-        const params = new URLSearchParams(window.location.search);
-        const email = params.get("email");
+    if (!rawEmail) {
+      document.getElementById("message").innerText =
+        "Error: No learner email provided.";
+      return;
+    }
 
-        if (!email) {
-          document.getElementById("message").innerText =
-            "Error: No learner email provided.";
-          return;
-        }
+    // 2) Normalize + escape for Zoho criteria (avoid breaking quotes)
+    //    Also trim just in case TC or the browser includes whitespace.
+    const email = rawEmail.trim().replace(/'/g, "\\'");
 
-        // 2) Build ZOHO_CRITERIA string
-        const criteria = `"Survey Responses"."Contact Email"='${email}'`;
+    // 3) Build ZOHO_CRITERIA string (NO spaces around '=')
+    //    IMPORTANT: Keep the format exactly:
+    //    "Survey Responses"."Contact Email"='email@domain.com'
+    const criteria = `"Survey Responses"."Contact Email"='${email}'`;
 
-        // 3) URL-encode the criteria for use in the Zoho URL
-        const encodedCriteria = encodeURIComponent(criteria);
+    // 4) URL-encode the criteria for use in the Zoho URL
+    const encodedCriteria = encodeURIComponent(criteria);
 
-        // 4) Build the final Zoho dashboard URL
-        const zohoUrl =
-          "https://analytics.zoho.com/open-view/2603906000004171130/694800150c8c2dea4025ac049dfb4e7087619576dae09809881e8a54fbadfa7f" +
-          "?ZOHO_CRITERIA=" +
-          encodedCriteria;
+    // 5) Build the final Zoho dashboard URL
+    const base =
+      "https://analytics.zoho.com/open-view/2603906000004171130/694800150c8c2dea4025ac049dfb4e7087619576dae09809881e8a54fbadfa7f";
 
-        // 5) Create the iframe for Zoho Analytics
-        const iframe = document.createElement("iframe");
-        iframe.id = "dashboard-frame";
-        iframe.src = zohoUrl;
-        iframe.setAttribute("frameborder", "0");
-        iframe.setAttribute("allowfullscreen", "true");
+    // Use URL + URLSearchParams to avoid accidental formatting/encoding issues
+    const url = new URL(base);
+    url.searchParams.set("ZOHO_CRITERIA", criteria);
 
-        // 6) Insert the iframe into the page
-        const container = document.getElementById("dashboard-container");
-        container.innerHTML = "";
-        container.appendChild(iframe);
-      })();
-    </script>
+    // 6) Create the iframe for Zoho Analytics
+    const iframe = document.createElement("iframe");
+    iframe.id = "dashboard-frame";
+    iframe.src = url.toString();
+    iframe.setAttribute("frameborder", "0");
+    iframe.setAttribute("allowfullscreen", "true");
 
+    // 7) Insert the iframe into the page
+    const container = document.getElementById("dashboard-container");
+    container.innerHTML = "";
+    container.appendChild(iframe);
+  })();
+</script>
   </body>
 </html>
