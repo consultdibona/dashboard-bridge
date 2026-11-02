@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E3 Follow-Up Task Saved</title>
+<style>
+:root{font-family:Arial,Helvetica,sans-serif;color:#17252f;background:#f4f6f9}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;box-sizing:border-box}
+main{background:#fff;border:1px solid #dde3ea;border-radius:14px;max-width:520px;width:100%;padding:28px;box-shadow:0 5px 22px #17252f0d;box-sizing:border-box}
+h1{font-size:24px;margin:0 0 10px}p{line-height:1.5;color:#475569}label{display:block;margin:16px 0 5px;font-weight:bold;font-size:14px}input{box-sizing:border-box;width:100%;padding:12px;border:1px solid #b7c2cf;border-radius:8px;font:inherit}button{display:block;width:100%;margin-top:24px;padding:14px;border:0;border-radius:8px;background:#1769aa;color:white;font-size:16px;font-weight:bold;cursor:pointer}button:hover{background:#0d528b}.note{font-size:13px}#error{color:#a32626;font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<h1>Task submitted</h1>
+<p>Would you like to add a 30-minute follow-up reminder to your Google Calendar? Review the details, then click below. Nothing is added until you save it in Google Calendar.</p>
+<label for="title">Event title</label><input id="title" autocomplete="off" value="E3 Follow-Up">
+<label for="when">Reminder date and time</label><input id="when" type="datetime-local">
+<p id="error" role="alert"></p>
+<button id="calendar" type="button">Add to Google Calendar</button>
+<p class="note">Google Calendar will open with these details prefilled. You can change the calendar, time and reminder before saving. Times are in Eastern Time.</p>
+</main>
+<script>
+(function(){
+const params=new URLSearchParams(location.search), title=document.querySelector('#title'), when=document.querySelector('#when');
+function parseTime(s){
+ if(!s)return null;
+ s=s.trim().replace(/\s+/g,' ');
+ let m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})[T ](\d{1,2}):(\d{2})(?::\d{2})?\s*(AM|PM)?$/i);
+ if(m){let h=+m[4];if(m[6])h=(h%12)+(m[6].toUpperCase()==='PM'?12:0);return [m[1],m[2],m[3],h,m[5]];}
+ m=s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:[, ]+)(\d{1,2}):(\d{2})(?::\d{2})?\s*(AM|PM)?$/i);
+ if(m){let h=+m[4];if(m[6])h=(h%12)+(m[6].toUpperCase()==='PM'?12:0);return [m[3],m[1],m[2],h,m[5]];}
+ let d=new Date(s);if(!isNaN(d.getTime()))return [d.getFullYear(),d.getMonth()+1,d.getDate(),d.getHours(),d.getMinutes()];
+ return null;
+}
+function pad(n){return String(n).padStart(2,'0')}
+function localValue(parts){return parts?`${parts[0]}-${pad(parts[1])}-${pad(parts[2])}T${pad(parts[3])}:${pad(parts[4])}`:''}
+function googleDate(date){return `${date.getFullYear()}${pad(date.getMonth()+1)}${pad(date.getDate())}T${pad(date.getHours())}${pad(date.getMinutes())}00`}
+if(params.has('title'))title.value=params.get('title')||'E3 Follow-Up';
+const incoming=params.get('when')||params.get('date')||''; const parsed=parseTime(incoming);if(parsed)when.value=localValue(parsed);
+document.querySelector('#calendar').addEventListener('click',()=>{
+ const err=document.querySelector('#error');err.textContent='';
+ if(!title.value.trim()||!when.value){err.textContent='Enter a task title and valid reminder date/time.';return;}
+ const start=new Date(when.value); if(Number.isNaN(start.getTime())){err.textContent='Enter a valid date/time.';return;}
+ const end=new Date(start.getTime()+30*60*1000);
+ const google=new URL('https://calendar.google.com/calendar/render');
+ google.searchParams.set('action','TEMPLATE');google.searchParams.set('text',title.value.trim());
+ google.searchParams.set('dates',`${googleDate(start)}/${googleDate(end)}`);google.searchParams.set('ctz','America/New_York');
+ google.searchParams.set('details','E3 Productivity Lab follow-up task');
+ window.location.href=google.toString();
+});
+})();
+</script>
+</body>
+</html>
