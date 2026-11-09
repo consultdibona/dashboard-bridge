@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultant Actions | E3</title>
+<meta name="description" content="E3 consultant shortcuts to update leads, upload files, add notes, and create follow-up tasks.">
+</head>
+<body>
+<div id="consultant-actions-preview">
+  <section class="ca-panel" aria-labelledby="ca-title">
+    <header><h2 id="ca-title">Consultant Actions</h2><span class="ca-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-3 8H3l8 5-1 7 4-8h7l-8-5z"/></svg></span></header>
+    <div class="ca-actions">
+      <div class="ca-group" role="group" aria-label="Lead update form">
+        <a class="ca-button" href="https://forms.zoho.com/consultdibona/form/E3ConsultantUpdate" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-7M16 3l5 5M10 14l-1 4 4-1L22 8a2 2 0 0 0-5-5z"/></svg><span>Update Lead</span></a>
+        <a class="ca-button" href="https://forms.zoho.com/consultdibona/form/E3ConsultantUpdate" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg><span>Upload File</span></a>
+        <a class="ca-button" href="https://forms.zoho.com/consultdibona/form/E3ConsultantUpdate" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3H5a2 2 0 0 0-2 2v15a1 1 0 0 0 1 1h12M7 7h5M7 11h3m3 4 7-7 3 3-7 7-4 1z"/></svg><span>Add Notes</span></a>
+      </div>
+      <a class="ca-task ca-button" href="https://forms.zoho.com/consultdibona/form/E3CreateFollowUpTask" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18m-9 3v4m-2-2h4"/></svg><span>Create Follow-Up Task</span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a class="ca-new ca-button" href="https://forms.zoho.com/consultdibona/form/NewLead" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2 21v-3a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v3m4-14v6m-3-3h6"/></svg><span>Add New Lead</span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    </div>
+  </section>
+</div>
+<style>
+html,body{margin:0;padding:0;background:transparent}
+a.ca-button{text-decoration:none;cursor:pointer}
+#consultant-actions-preview{padding:8px;display:flex;justify-content:center;color-scheme:light;font-family:Avenir,"Segoe UI",sans-serif}
+#consultant-actions-preview *{box-sizing:border-box}
+#consultant-actions-preview .ca-panel{width:100%;max-width:420px;background:#fff;border:1px solid #dce0e3;border-top:5px solid #ECAF3B;border-radius:12px;box-shadow:0 3px 10px #35455218;overflow:hidden}
+#consultant-actions-preview header{padding:21px 24px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#354552;color:#fff}
+#consultant-actions-preview h2{margin:0;font-family:Athelas,Georgia,serif;font-size:25px;font-weight:700;line-height:1.25;color:#fff}
+#consultant-actions-preview .ca-mark{color:#ECAF3B;display:flex}
+#consultant-actions-preview .ca-actions{padding:16px;display:grid;gap:11px}
+#consultant-actions-preview a{font:700 20px/1.25 Avenir,"Segoe UI",sans-serif;min-height:62px;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .15s,transform .15s}
+#consultant-actions-preview a:hover{transform:translateY(-1px)}
+#consultant-actions-preview a:focus-visible{outline:3px solid #ECAF3B;outline-offset:3px}
+#consultant-actions-preview a svg{width:22px;height:22px;flex-shrink:0}
+#consultant-actions-preview .ca-group{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+#consultant-actions-preview .ca-group a{background:#9F3238;color:#fff;border:1px solid #9F3238;flex-direction:column;gap:8px;padding:14px 8px;min-height:105px;font-size:18px}
+#consultant-actions-preview .ca-group a span{max-width:75px;text-align:center}
+#consultant-actions-preview .ca-group a:hover{background:#882b30}
+#consultant-actions-preview .ca-task,#consultant-actions-preview .ca-new{width:100%;padding:15px 18px;justify-content:flex-start}
+#consultant-actions-preview .ca-task{background:#354552;color:#fff;border:1px solid #354552}
+#consultant-actions-preview .ca-task:hover{background:#293844}
+#consultant-actions-preview .ca-new{background:#ECAF3B;color:#354552;border:1px solid #ECAF3B}
+#consultant-actions-preview .ca-new:hover{background:#e4a12a}
+#consultant-actions-preview .ca-task svg:last-child,#consultant-actions-preview .ca-new svg:last-child{margin-left:auto}
+@media(max-width:380px){#consultant-actions-preview{padding:8px}#consultant-actions-preview .ca-actions{padding:12px}#consultant-actions-preview header{padding:18px}#consultant-actions-preview .ca-task,#consultant-actions-preview .ca-new{padding:14px 12px}#consultant-actions-preview .ca-task svg:last-child,#consultant-actions-preview .ca-new svg:last-child{display:none}}
+@media(prefers-reduced-motion:reduce){#consultant-actions-preview a{transition:none}#consultant-actions-preview a:hover{transform:none}}
+</style>
+
+</body>
+</html>
