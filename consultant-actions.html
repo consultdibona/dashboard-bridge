@@ -22,15 +22,15 @@
   </section>
 </div>
 <style>
-html,body{margin:0;padding:0;background:transparent}
+html,body{margin:0;padding:0;width:100%;height:100%;background:transparent}
 a.ca-button{text-decoration:none;cursor:pointer}
-#consultant-actions-preview{padding:8px;display:flex;justify-content:center;color-scheme:light;font-family:Avenir,"Segoe UI",sans-serif}
+#consultant-actions-preview{box-sizing:border-box;width:100%;min-height:100%;padding:0;display:flex;justify-content:center;color-scheme:light;font-family:Avenir,"Segoe UI",sans-serif}
 #consultant-actions-preview *{box-sizing:border-box}
-#consultant-actions-preview .ca-panel{width:100%;max-width:420px;background:#fff;border:1px solid #dce0e3;border-top:5px solid #ECAF3B;border-radius:12px;box-shadow:0 3px 10px #35455218;overflow:hidden}
+#consultant-actions-preview .ca-panel{width:100%;min-width:0;display:flex;flex-direction:column;background:#fff;border:1px solid #dce0e3;border-top:5px solid #ECAF3B;border-radius:12px;box-shadow:0 3px 10px #35455218;overflow:hidden}
 #consultant-actions-preview header{padding:21px 24px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#354552;color:#fff}
 #consultant-actions-preview h2{margin:0;font-family:Athelas,Georgia,serif;font-size:25px;font-weight:700;line-height:1.25;color:#fff}
 #consultant-actions-preview .ca-mark{color:#ECAF3B;display:flex}
-#consultant-actions-preview .ca-actions{padding:16px;display:grid;gap:11px}
+#consultant-actions-preview .ca-actions{flex:1;padding:16px;display:grid;grid-template-rows:minmax(105px,1.3fr) minmax(62px,1fr) minmax(62px,1fr);gap:11px}
 #consultant-actions-preview a{font:700 20px/1.25 Avenir,"Segoe UI",sans-serif;min-height:62px;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .15s,transform .15s}
 #consultant-actions-preview a:hover{transform:translateY(-1px)}
 #consultant-actions-preview a:focus-visible{outline:3px solid #ECAF3B;outline-offset:3px}
@@ -45,7 +45,7 @@ a.ca-button{text-decoration:none;cursor:pointer}
 #consultant-actions-preview .ca-new{background:#ECAF3B;color:#354552;border:1px solid #ECAF3B}
 #consultant-actions-preview .ca-new:hover{background:#e4a12a}
 #consultant-actions-preview .ca-task svg:last-child,#consultant-actions-preview .ca-new svg:last-child{margin-left:auto}
-@media(max-width:380px){#consultant-actions-preview{padding:8px}#consultant-actions-preview .ca-actions{padding:12px}#consultant-actions-preview header{padding:18px}#consultant-actions-preview .ca-task,#consultant-actions-preview .ca-new{padding:14px 12px}#consultant-actions-preview .ca-task svg:last-child,#consultant-actions-preview .ca-new svg:last-child{display:none}}
+@media(max-width:380px){#consultant-actions-preview{padding:0}#consultant-actions-preview .ca-actions{padding:12px}#consultant-actions-preview header{padding:18px}#consultant-actions-preview .ca-task,#consultant-actions-preview .ca-new{padding:14px 12px}#consultant-actions-preview .ca-task svg:last-child,#consultant-actions-preview .ca-new svg:last-child{display:none}}
 @media(prefers-reduced-motion:reduce){#consultant-actions-preview a{transition:none}#consultant-actions-preview a:hover{transform:none}}
 </style>
 
